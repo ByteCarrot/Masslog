@@ -1,0 +1,107 @@
+﻿@using ByteCarrot.Masslog.Web.Views.Infrastructure
+@model ByteCarrot.Masslog.Web.Controllers.Applications.LoggingRulesViewModel
+<div id="application-logging-rules" style="margin-top: -6px;">
+    <div class="form-actions form-toolbar">
+        <button class="btn" data-action="edit">Edit</button>
+        <button class="btn" data-action="save">Save</button>
+        <button class="btn btn-danger" data-action="cancel">Cancel</button>
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.RulesEditorFor(x => x.Rules)
+    }
+</div>
+<script type="text/javascript">
+    $(function () {
+        var self = $('#application-logging-rules');
+
+        // rules editor
+
+        var message = self.find('.field-parse-error');
+        message.hide();
+
+        var checkSyntax = function () {
+            var url = '@(Url.Action(MVC.LoggingRules.ActionNames.Verify))';
+            var params = { rules: editor.getValue() };
+
+            $.post(url, params, function (data) {
+                if (!data.Success) {
+                    var coords = editor.charCoords({ line: data.Line, ch: data.Char }, 'local');
+                    message.find('span').html(data.Message);
+                    message.css('top', coords.y)
+                        .css('left', coords.x)
+                        .show();
+                }
+            });
+        };
+
+        var editor = CodeMirror.fromTextArea(document.getElementById('Rules'), {
+            mode: 'rules',
+            tabMode: 'indent',
+            matchBrackets: true,
+            readOnly: 'nocursor',
+            onChange: function () {
+                message.hide();
+                window.clearTimeout(editor.timeout);
+                editor.timeout = window.setTimeout(checkSyntax, 2000);
+            }
+        });
+
+        // buttons
+        var edit = self.find('button[data-action=edit]');
+        var save = self.find('button[data-action=save]');
+        var cancel = self.find('button[data-action=cancel]');
+
+        edit.click(function () {
+            save.show();
+            cancel.show();
+            edit.hide();
+            editor.setOption('readOnly', false);
+        });
+
+        cancel.click(function () {
+            if (!confirm('Are you sure? All data in the form will be lost.')) {
+                return false;
+            }
+
+            var url = '@(Url.Action(MVC.LoggingRules.ActionNames.Cancel))';
+
+            $.post(url, function (data) {
+                if (data.Success) {
+                    editor.setValue(data.Rules);
+                }
+            });
+
+            edit.show();
+            save.hide();
+            cancel.hide();
+            editor.setOption('readOnly', 'nocursor');
+            return true;
+        });
+
+        save.click(function () {
+            var url = '@(Url.Action(MVC.LoggingRules.ActionNames.Save))';
+            var params = { rules: editor.getValue() };
+
+            $.post(url, params, function (data) {
+                if (!data.Success) {
+                    var coords = editor.charCoords({ line: data.Line, ch: data.Char }, 'local');
+                    message.find('span').html(data.Message);
+                    message.css('top', coords.y)
+                        .css('left', coords.x)
+                        .show();
+                } else {
+                    save.hide();
+                    cancel.hide();
+                    edit.show();
+                    editor.setOption('readOnly', 'nocursor');
+                }
+            });
+        });
+
+        save.hide();
+        cancel.hide();
+    });
+
+    
+</script>

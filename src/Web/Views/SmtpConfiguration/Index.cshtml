@@ -1,0 +1,15 @@
+﻿@using ByteCarrot.Masslog.Web.Views.Infrastructure
+@model ByteCarrot.Masslog.Web.Controllers.Configuration.SmtpConfigurationViewModel
+
+<form class="form-horizontal" action="">
+    <h2 class="page">SMTP Configuration</h2>
+    @Html.TbUneditableFor(x => x.Host)
+    @Html.TbUneditableFor(x => x.Port)
+    @Html.TbUneditableFor(x => x.Username)
+    @Html.TbUneditableFor(x => x.Password)
+    @Html.TbUneditableFor(x => x.EnableSsl)
+
+    <div class="form-actions">
+        <button class="btn" data-jo='{"action":"get","url":"@Url.Action(MVC.SmtpConfiguration.Edit())","target":"#container"}'><i class="icon-edit"></i>&nbsp;Edit</button>
+    </div>
+</form>

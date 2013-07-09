@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E980050A-5A8A-4976-ABA8-EF4F050A43CB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ByteCarrot.Masslog.Core</RootNamespace>
+    <AssemblyName>ByteCarrot.Masslog.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Irony">
+      <HintPath>..\..\lib\Irony\Irony.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\..\lib\Mongo\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\..\lib\Mongo\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Solution Items\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="DataAccess\ActivityRepository.cs" />
+    <Compile Include="DataAccess\ApplicationRepository.cs" />
+    <Compile Include="DataAccess\ConfigurationRepository.cs" />
+    <Compile Include="DataAccess\IMongoDatabaseInitializer.cs" />
+    <Compile Include="DataAccess\DomainContext.cs" />
+    <Compile Include="DataAccess\IMongoDatabaseManager.cs" />
+    <Compile Include="DataAccess\MongoDatabaseInitializer.cs" />
+    <Compile Include="DataAccess\MongoDatabaseManager.cs" />
+    <Compile Include="DataAccess\QueryableExtensions.cs" />
+    <Compile Include="DataAccess\Repository.cs" />
+    <Compile Include="DataAccess\UserRepository.cs" />
+    <Compile Include="DomainModel\Entities\Application.cs" />
+    <Compile Include="DomainModel\Entities\ConfigurationEntity.cs" />
+    <Compile Include="DomainModel\Entities\SmtpConfiguration.cs" />
+    <Compile Include="DomainModel\Entities\DenormalizedDateTime.cs" />
+    <Compile Include="DomainModel\Entities\Privileges.cs" />
+    <Compile Include="DomainModel\Entities\RouteData.cs" />
+    <Compile Include="DomainModel\Repositories\ApplicationQuery.cs" />
+    <Compile Include="DomainModel\Repositories\IApplicationRepository.cs" />
+    <Compile Include="DomainModel\Repositories\IConfigurationRepository.cs" />
+    <Compile Include="DomainModel\Repositories\QueryBase.cs" />
+    <Compile Include="DomainModel\Services\Mailing\IMailingService.cs" />
+    <Compile Include="Infrastructure\Configuration\IMasslogConfiguration.cs" />
+    <Compile Include="Infrastructure\Configuration\MasslogConfiguration.cs" />
+    <Compile Include="Infrastructure\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\Json\IndentWriter.cs" />
+    <Compile Include="Infrastructure\Extensions\Json\JsonFormatter.cs" />
+    <Compile Include="Infrastructure\Extensions\Json\StringWalker.cs" />
+    <Compile Include="Infrastructure\Extensions\TimeSpanExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\XmlExtensions.cs" />
+    <Compile Include="Infrastructure\Result.cs" />
+    <Compile Include="Logging\ActivityProcessor.cs" />
+    <Compile Include="Logging\ApplicationRepositoryExtensions.cs" />
+    <Compile Include="Logging\Behaviors\MonitorBehavior.cs" />
+    <Compile Include="Logging\Behaviors\MonitorBehaviorFactory.cs" />
+    <Compile Include="DomainModel\Entities\Activity.cs" />
+    <Compile Include="DomainModel\Entities\ActivityStatus.cs" />
+    <Compile Include="DomainModel\Entities\Entity.cs" />
+    <Compile Include="DomainModel\Entities\Exception.cs" />
+    <Compile Include="DomainModel\Entities\FailureDeterminedBy.cs" />
+    <Compile Include="DomainModel\Entities\NameValue.cs" />
+    <Compile Include="DomainModel\Entities\Request.cs" />
+    <Compile Include="DomainModel\Entities\Response.cs" />
+    <Compile Include="DomainModel\Entities\User.cs" />
+    <Compile Include="DomainModel\Repositories\ActivityQuery.cs" />
+    <Compile Include="DomainModel\Repositories\IActivityRepository.cs" />
+    <Compile Include="DomainModel\Repositories\IDomainContext.cs" />
+    <Compile Include="DomainModel\Repositories\IRepository.cs" />
+    <Compile Include="DomainModel\Repositories\IUserRepository.cs" />
+    <Compile Include="DomainModel\Repositories\Page.cs" />
+    <Compile Include="DomainModel\Repositories\SortDirection.cs" />
+    <Compile Include="DomainModel\Repositories\UserQuery.cs" />
+    <Compile Include="Infrastructure\Extensions\LogExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\StopWatchLogger.cs" />
+    <Compile Include="Infrastructure\Extensions\StreamExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\StringExtensions.cs" />
+    <Compile Include="Infrastructure\Configuration\ConfigurationBase.cs" />
+    <Compile Include="Infrastructure\Configuration\NameValueSectionHandler.cs" />
+    <Compile Include="Infrastructure\Extensions\TypeExtensions.cs" />
+    <Compile Include="Infrastructure\Name.cs" />
+    <Compile Include="IocRegistry.cs" />
+    <Compile Include="Logging\Behaviors\IMonitorBehaviorFactory.cs" />
+    <Compile Include="Logging\DataCollectionContext.cs" />
+    <Compile Include="Logging\DataCollector.cs" />
+    <Compile Include="Logging\IActivityProcessor.cs" />
+    <Compile Include="Logging\IDataCollector.cs" />
+    <Compile Include="Logging\Notifications\EmailNotification.cs" />
+    <Compile Include="Logging\Notifications\EmailNotificationRequiredSpecification.cs" />
+    <Compile Include="Logging\Notifications\IEmailNotification.cs" />
+    <Compile Include="Logging\ILoggingConfiguration.cs" />
+    <Compile Include="Logging\Log4NetManager.cs" />
+    <Compile Include="Logging\LoggingConfiguration.cs" />
+    <Compile Include="Logging\LoggingModuleIoC.cs" />
+    <Compile Include="Logging\Monitor.cs" />
+    <Compile Include="Logging\IMonitor.cs" />
+    <Compile Include="Logging\LoggingModule.cs" />
+    <Compile Include="Logging\Notifications\IEmailNotificationRequiredSpecification.cs" />
+    <Compile Include="Logging\OutputFilterStream.cs" />
+    <Compile Include="Logging\Updaters\IActivityUpdater.cs" />
+    <Compile Include="Logging\Updaters\RequestActivityUpdater.cs" />
+    <Compile Include="Logging\Updaters\RouteDataActivityUpdater.cs" />
+    <Compile Include="Logging\Updaters\ServerVariablesActivityUpdater.cs" />
+    <Compile Include="Logging\Updaters\ResponseActivityUpdater.cs" />
+    <Compile Include="Infrastructure\Extensions\Json\JsonExtensions.cs" />
+    <Compile Include="Rules\CodeCompileUnitExtensions.cs" />
+    <Compile Include="Rules\CodeDomBuilder.cs" />
+    <Compile Include="Rules\CompilationError.cs" />
+    <Compile Include="Rules\CompilationResult.cs" />
+    <Compile Include="Rules\IActivityContext.cs" />
+    <Compile Include="Logging\Behaviors\IMonitorBehavior.cs" />
+    <Compile Include="Rules\IRule.cs" />
+    <Compile Include="Rules\IRulesCodeGenerator.cs" />
+    <Compile Include="Rules\IRulesCompiler.cs" />
+    <Compile Include="Rules\IRulesParser.cs" />
+    <Compile Include="Rules\NonTerminalExtensions.cs" />
+    <Compile Include="Rules\NumberOperationType.cs" />
+    <Compile Include="Rules\NumberOperationTypeExtensions.cs" />
+    <Compile Include="Rules\ParseResult.cs" />
+    <Compile Include="Rules\ParseTreeNodeExtensions.cs" />
+    <Compile Include="Rules\RuleCodeGenerator.cs" />
+    <Compile Include="Rules\ActivityContext.cs" />
+    <Compile Include="Rules\Rule.cs" />
+    <Compile Include="Rules\RulesCodeGenerator.cs" />
+    <Compile Include="Rules\RulesCompilationException.cs" />
+    <Compile Include="Rules\RulesCompiler.cs" />
+    <Compile Include="Rules\RulesGrammar.cs" />
+    <Compile Include="Rules\RulesParser.cs" />
+    <Compile Include="Rules\StringOperationType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DataAccess\Database.js" />
+    <Content Include="PostBuild.txt" />
+    <Content Include="Release\ByteCarrot.Masslog.Core.v4.dll" />
+    <Content Include="Release\ByteCarrot.Masslog.Core.v4.pdb" />
+    <Content Include="Release\ByteCarrot.Masslog.Core.v45.dll" />
+    <Content Include="Release\ByteCarrot.Masslog.Core.v45.pdb" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(ProjectDir)..\packages\ilmerge.2.13.0307\ilmerge.exe" /targetplatform:"v4,C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /target:library "/out:$(ProjectDir)Release\ByteCarrot.Masslog.Core.v4.dll" ByteCarrot.Masslog.Core.dll Irony.dll log4net.dll MongoDB.Bson.dll MongoDB.Driver.dll StructureMap.dll
+"$(ProjectDir)..\packages\ilmerge.2.13.0307\ilmerge.exe" /targetplatform:"v4,C:\Windows\Microsoft.NET\Framework\v4.0.30319" /target:library "/out:$(ProjectDir)Release\ByteCarrot.Masslog.Core.v45.dll" ByteCarrot.Masslog.Core.dll Irony.dll log4net.dll MongoDB.Bson.dll MongoDB.Driver.dll StructureMap.dll</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

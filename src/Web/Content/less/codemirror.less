@@ -1,0 +1,151 @@
+.CodeMirror 
+{
+    line-height: 1em;
+    font-family: monospace;
+    border: solid 1px #ccc;
+
+    pre 
+    {
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        -o-border-radius: 0;
+        border-radius: 0;
+        border-width: 0; margin: 0; padding: 0; background: transparent;
+        font-family: inherit;
+        font-size: inherit;
+        padding: 0; 
+        margin: 0;
+        white-space: pre;
+        word-wrap: normal;
+    }
+
+    pre.CodeMirror-cursor 
+    {
+        z-index: 10;
+        position: absolute;
+        visibility: hidden;
+        border-left: 1px solid black;
+        border-right:none;
+        width:0;
+    }
+
+    textarea 
+    {
+        outline: none !important;
+    }
+
+    span.CodeMirror-matchingbracket 
+    {
+        color: #0f0;
+    }
+    
+    span.CodeMirror-nonmatchingbracket 
+    {
+        color: #f22;
+    }
+
+    pre.CodeMirror-cursor.CodeMirror-overwrite 
+    {
+    }
+}
+
+.CodeMirror-scroll 
+{
+    overflow: auto;
+    height: 300px;
+    /* This is needed to prevent an IE[67] bug where the scrolled content
+       is visible outside of the scrolling box. */
+    position: relative;
+    outline: none;
+}
+
+.CodeMirror-gutter 
+{
+    position: absolute; left: 0; top: 0;
+    z-index: 10;
+    background-color: #f7f7f7;
+    border-right: 1px solid #eee;
+    min-width: 2em;
+    height: 100%;
+}
+
+.CodeMirror-gutter-text 
+{
+    color: #aaa;
+    text-align: right;
+    padding: .4em .2em .4em .4em;
+    white-space: pre !important;
+}
+
+.CodeMirror-lines 
+{
+    padding: .4em;
+    white-space: pre;
+}
+
+.CodeMirror-wrap
+{
+    pre 
+    {
+        word-wrap: break-word;
+        white-space: pre-wrap;
+    }
+
+    .CodeMirror-scroll 
+    {
+        overflow-x: hidden;
+    }
+}
+
+div.CodeMirror-selected 
+{ 
+    background: #d9d9d9; 
+}
+
+.CodeMirror-focused 
+{
+    pre.CodeMirror-cursor 
+    {
+        visibility: visible;
+    }
+
+    div.CodeMirror-selected 
+    { 
+        background: #d7d4f0; 
+    }
+}
+
+/* Theme */
+
+.cm-s-default 
+{
+    span.cm-keyword 
+    {
+        color: #005269;
+    }
+
+    span.cm-string 
+    {
+        color: #5B6900;
+    }
+    
+    span.cm-bracket 
+    {
+        color: #cc7;
+    }
+
+    span.cm-block
+    {
+        color: #B80000;
+    }
+
+    span.cm-logicalop 
+    {
+        color: #B80000;
+    }
+
+    .cm-error 
+    {
+        background-color: #f00;
+    }
+}

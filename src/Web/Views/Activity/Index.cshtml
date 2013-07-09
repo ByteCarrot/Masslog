@@ -1,0 +1,18 @@
+﻿@using ByteCarrot.Masslog.Web.Controllers.Activities
+@model ActivityViewModel
+
+<div id="activity">
+    <ul class="nav nav-tabs">
+        <li><a href="#" data-jo='{"action":"get","url":"@Url.Action(MVC.Activities.Index())","target":"#container"}'><i class="icon-chevron-left"></i>&nbsp;Back</a></li>
+        <li class="active"><a href="#" data-toggle="tab" data-jo='{"action":"get","url":"@Url.Action(MVC.Activity.Details())","target":"#tab-content"}'>Activity</a></li>
+        <li class="active"><a href="#" data-toggle="tab" data-jo='{"action":"get","url":"@Url.Action(MVC.Activity.Request())","target":"#tab-content"}'>Request</a></li>
+        <li class="active"><a href="#" data-toggle="tab" data-jo='{"action":"get","url":"@Url.Action(MVC.Activity.Response())","target":"#tab-content"}'>Response</a></li>
+@if (Model.HasRouteData)
+{
+        <li class="active"><a href="#" data-toggle="tab" data-jo='{"action":"get","url":"@Url.Action(MVC.Activity.RouteData())","target":"#tab-content"}'>Route Data</a></li>
+}
+        <li class="active"><a href="#" data-toggle="tab" data-jo='{"action":"get","url":"@Url.Action(MVC.Activity.Exceptions())","target":"#tab-content"}'>Exceptions</a></li>
+        <li class="active"><a href="#" data-toggle="tab" data-jo='{"action":"get","url":"@Url.Action(MVC.Activity.ServerVariables())","target":"#tab-content"}'>Server Variables</a></li>
+    </ul>
+    <div id="tab-content" data-jo='{"action":"get","url":"@Url.Action(MVC.Activity.Details())","target":"_self","event":"load"}'></div>
+</div>

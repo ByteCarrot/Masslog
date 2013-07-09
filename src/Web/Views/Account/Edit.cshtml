@@ -1,0 +1,19 @@
+﻿@using ByteCarrot.Masslog.Web.Views.Infrastructure
+@model ByteCarrot.Masslog.Web.Controllers.Account.EditViewModel
+
+<form class="form-horizontal" action="">
+    <h2 class="page">Edit User</h2>
+    @Html.HiddenFor(x => x.Id)
+    @Html.TbUneditableFor(x => x.Username)
+    @Html.TbTextBoxFor(x => x.Email)
+    @Html.TbPasswordFor(x => x.Password)
+    @Html.TbPasswordFor(x => x.Password2)
+    @Html.TbCheckBoxFor(x => x.IsAdministrator)
+
+    @Html.Partial(MVC.Account.Views._Privileges, Model)
+
+    <div class="form-actions">
+        <button class="btn" data-jo='{"action":"post","url":"@Url.Action(MVC.Account.ActionNames.Edit)","target":"#container","form":"#container > form"}'><i class="icon-ok"></i>&nbsp;Save</button>
+        <button class="btn btn-danger" data-jo='{"action":"get","url":"@Url.Action(MVC.Account.ActionNames.List)","target":"#container","confirm":"Are you sure? All data in the form will be lost."}'>Cancel</button>
+    </div>
+</form>

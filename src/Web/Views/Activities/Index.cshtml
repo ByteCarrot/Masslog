@@ -1,0 +1,102 @@
+﻿@using ByteCarrot.Masslog.Web.Controllers.Activities
+@model ActivitiesViewModel
+
+<form id="activities-search" action="">
+    <h2 class="page">Activities</h2>
+    <div class="row">
+        <div class="span4">
+            @Html.LabelFor(x => x.ApplicationId, "Application:")
+            @Html.DropDownListFor(x => x.ApplicationId, Model.Applications, new { @class = "span4" })
+        </div>
+        <div class="span4">
+            @Html.LabelFor(x => x.Machine, "Machine:")
+            @Html.TextBoxFor(x => x.Machine, new { @class = "span4" })
+        </div>
+        <div class="span4">
+            @Html.LabelFor(x => x.User, "User:")
+            @Html.TextBoxFor(x => x.User, new { @class = "span4" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="span4">
+            @Html.LabelFor(x => x.HostName, "Host Name:")
+            @Html.TextBoxFor(x => x.HostName, new { @class = "span4" })
+        </div>
+        <div class="span4">
+            @Html.LabelFor(x => x.Url, "Url:")
+            @Html.TextBoxFor(x => x.Url, new { @class = "span4" })
+        </div>
+        <div class="span4">
+            @Html.LabelFor(x => x.StatusCode, "Status Code:")
+            @Html.TextBoxFor(x => x.StatusCode, new { maxlength = 3, @class = "span4" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="span4">
+            @Html.LabelFor(x => x.LocalDateFrom, "Date from:")
+            <div class="input-append date pull-left">
+                @Html.TextBoxFor(x => x.LocalDateFrom, new { data_format = "yyyy-MM-dd hh:mm:ss" })
+                <span class="add-on">
+                    <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                </span>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="caret"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" data-jo='{"action":"get","url":"@Url.Action(MVC.Activities.DateRange(DateRange.Last5Minutes))","target":"#container"}'>Last 5 minutes</a></li>
+                    <li><a href="#" data-jo='{"action":"get","url":"@Url.Action(MVC.Activities.DateRange(DateRange.Last1Hour))","target":"#container"}'>Last 1 hour</a></li>
+                    <li><a href="#" data-jo='{"action":"get","url":"@Url.Action(MVC.Activities.DateRange(DateRange.Last24Hours))","target":"#container"}'>Last 24 hours</a></li>
+                    <li><a href="#" data-jo='{"action":"get","url":"@Url.Action(MVC.Activities.DateRange(DateRange.Last7Days))","target":"#container"}'>Last 7 days</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="span4">
+            @Html.LabelFor(x => x.LocalDateTo, "Date to:")
+            <div class="input-append date">
+                @Html.TextBoxFor(x => x.LocalDateTo, new { data_format = "yyyy-MM-dd hh:mm:ss" })
+                <span class="add-on">
+                    <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                </span>
+            </div>
+        </div>
+        <div class="span4">
+        </div>
+    </div>
+    <div class="row">
+        <div class="span4">
+            @Html.LabelFor(x => x.Status, "Status:")
+            @Html.DropDownListFor(x => x.Status, Model.Statuses, new { @class = "span4" })
+        </div>
+        <div class="span4">
+            @Html.LabelFor(x => x.FailureDeterminedBy, "Failure determined by:")
+            @Html.DropDownListFor(x => x.FailureDeterminedBy, Model.FailureDeterminedByTypes, new { @class = "span4" })
+        </div>
+        <div class="span4 buttons">
+            <button class="btn" data-jo='{"action":"post","url":"@Url.Action(MVC.Activities.ActionNames.Search)","target":"#container > div","form":"#container > form"}'><i class="icon-search"></i>&nbsp;Search</button>
+            <button class="btn btn-danger" data-jo='{"action":"get","url":"@Url.Action(MVC.Activities.ActionNames.Clear)","target":"#container","confirm":"Are you sure? All search criteria will be reset to theirs default values."}'>Clear</button>
+        </div>
+    </div>
+</form>
+<div id="activities-result" data-jo='{"action":"get","url":"@Url.Action(MVC.Activities.ActionNames.LastSearch)","target":"_self","event":"load"}'></div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#StatusCode').numeric({ decimal: false, negative: false });
+        $('div.date').datetimepicker({ language: 'en-US' });
+
+        var status = $('#Status');
+        var fdb = $('#FailureDeterminedBy');
+        if (status.val() != 'Failure') {
+            fdb.attr('disabled', 'disabled').val('');
+        }
+        status.change(function () {
+            if (status.val() == 'Failure') {
+                fdb.removeAttr('disabled');
+            } else {
+                fdb.attr('disabled', 'disabled').val('');
+            }
+        });
+    });
+</script>

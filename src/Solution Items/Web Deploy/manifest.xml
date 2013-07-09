@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MSDeploy.iisApp>
+  <iisApp path="Web" 
+          managedPipelineMode="Integrated"
+          managedRuntimeVersion="v4.0"
+          enable32BitAppOnWin64="false"/>
+  <dbfullsql path="login.sql" 
+             transacted="false" />
+  <dbfullsql path="user.sql" 
+             transacted="false" />
+  <dbfullsql path="sqlserver.sql" 
+             transacted="false" />
+  <dbmysql path="install.sql"
+           transacted="false"
+           commandDelimiter="//" 
+           removeCommandDelimiter="true" />
+  <dbmysql path="mysql.sql" 
+           transacted="false" />
+</MSDeploy.iisApp>

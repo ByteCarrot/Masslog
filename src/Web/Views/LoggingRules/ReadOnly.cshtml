@@ -1,0 +1,15 @@
+﻿@model ByteCarrot.Masslog.Web.Controllers.Applications.LoggingRulesViewModel
+
+<div style="margin-top: -6px;">
+    <textarea id="Rules">@Model.Rules</textarea>
+</div>
+<script type="text/javascript">
+    $(function () {
+        CodeMirror.fromTextArea(document.getElementById('Rules'), {
+            mode: 'rules',
+            tabMode: 'indent',
+            matchBrackets: true,
+            readOnly: 'nocursor'
+        });
+    });
+</script>

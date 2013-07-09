@@ -1,0 +1,95 @@
+﻿@model ByteCarrot.Masslog.Web.Controllers.Activities.RouteDataViewModel
+
+<h2 class="page">Route Data</h2>
+@if (Model.RouteDataIgnored)
+{
+    <div class="alert alert-info">Route data ignored</div>
+} else
+{
+
+    if (!Model.RouteDataIgnored)
+    {
+        <table class="name-value">
+            <tr>
+                <td class="left">Route Name</td>
+                <td class="right">@Model.Name</td>
+            </tr>
+            <tr>
+                <td class="left">Template</td>
+                <td class="right">@Model.Template</td>
+            </tr>
+        </table>
+    }
+
+    <h3 class="page">Values</h3>
+    if (Model.Values.Count == 0)
+    {
+        <div class="alert alert-info">No values</div>
+    }
+    else
+    {
+        <table class="name-value">
+            @foreach (var item in Model.Values)
+            {
+                <tr>
+                    <td class="left">@item.Name</td>
+                    <td class="right">@item.Value</td>
+                </tr>
+            }
+        </table>
+    }
+
+    <h3 class="page">Defaults</h3>
+    if (Model.Defaults.Count == 0)
+    {
+        <div class="alert alert-info">No defaults</div>
+    }
+    else
+    {
+        <table class="name-value">
+            @foreach (var item in Model.Defaults)
+            {
+                <tr>
+                    <td class="left">@item.Name</td>
+                    <td class="right">@item.Value</td>
+                </tr>
+            }
+        </table>
+    }
+
+    <h3 class="page">Constraints</h3>
+    if (Model.Constraints.Count == 0)
+    {
+        <div class="alert alert-info">No constraints</div>
+    }
+    else
+    {
+        <table class="name-value">
+            @foreach (var item in Model.Constraints)
+            {
+                <tr>
+                    <td class="left">@item.Name</td>
+                    <td class="right">@item.Value</td>
+                </tr>
+            }
+        </table>
+    }
+
+    <h3 class="page">Data Tokens</h3>
+    if (Model.DataTokens.Count == 0)
+    {
+        <div class="alert alert-info">No data tokens</div>
+    }
+    else
+    {
+        <table class="name-value">
+            @foreach (var item in Model.DataTokens)
+            {
+                <tr>
+                    <td class="left">@item.Name</td>
+                    <td class="right">@item.Value</td>
+                </tr>
+            }
+        </table>
+    }
+}

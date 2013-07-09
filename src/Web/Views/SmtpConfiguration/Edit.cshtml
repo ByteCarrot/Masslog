@@ -1,0 +1,16 @@
+﻿@using ByteCarrot.Masslog.Web.Views.Infrastructure
+@model ByteCarrot.Masslog.Web.Controllers.Configuration.SmtpConfigurationViewModel
+
+<form class="form-horizontal" action="">
+    <h2 class="page">SMTP Configuration</h2>
+    @Html.TbTextBoxFor(x => x.Host)
+    @Html.TbTextBoxFor(x => x.Port)
+    @Html.TbTextBoxFor(x => x.Username)
+    @Html.TbPasswordFor(x => x.Password)
+    @Html.TbCheckBoxFor(x => x.EnableSsl)
+
+    <div class="form-actions">
+        <button class="btn" data-jo='{"action":"post","url":"@Url.Action(MVC.SmtpConfiguration.Edit())","target":"#container","form":"#container > form"}'><i class="icon-ok"></i>&nbsp;Save</button>
+        <button class="btn btn-danger" data-jo='{"action":"get","url":"@Url.Action(MVC.SmtpConfiguration.Index())","target":"#container","confirm":"Are you sure? All data in the form will be lost."}'>Cancel</button>
+    </div>
+</form>

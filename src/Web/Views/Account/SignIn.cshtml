@@ -1,0 +1,21 @@
+﻿@using ByteCarrot.Masslog.Core.Infrastructure.Extensions
+@using ByteCarrot.Masslog.Web.Views.Infrastructure
+@model ByteCarrot.Masslog.Web.Controllers.Account.SignInViewModel
+
+<form class="form-horizontal" action="">
+    <h2 class="page">Sign In</h2>
+    @if (!Model.Message.Empty())
+    {
+        <div class="alert alert-error">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            @Model.Message
+        </div>
+    }
+    @Html.TbTextBoxFor(x => x.Username)
+    @Html.TbPasswordFor(x => x.Password)
+    @Html.TbCheckBoxFor(x => x.RememberMe)
+
+    <div class="form-actions">
+        <button class="btn" data-jo='{"action":"post","url":"@Url.Action(MVC.Account.ActionNames.SignIn)","target":"#container","form":"#container > form"}'>Sign In</button>
+    </div>
+</form>

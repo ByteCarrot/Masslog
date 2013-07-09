@@ -1,0 +1,71 @@
+﻿div.field-container 
+{
+    position: relative;
+    margin-bottom: 10px;
+
+    label 
+    {
+        display: block;
+    }
+
+    label.checkbox 
+    {
+        display: inline;
+    }
+
+    input[type=text], 
+    input[type=password],
+    div.CodeMirror
+    {
+        margin: 4px 0px 2px 0px;
+        width: 250px;
+    }
+
+    input[type=text].input-validation-error,
+    input[type=password].input-validation-error 
+    {
+        border-bottom: solid 2px #f00;
+        margin-bottom: 1px;
+    }
+
+    span.readonly 
+    {
+        border: 1px dotted #adadad;
+        padding: 3px;
+        display: block;
+        width: 250px;
+        margin: 4px 0px 2px 0px;
+    }
+
+    div.CodeMirror 
+    {
+        width: 100%;
+    }
+
+    // Validation message tooltip styles
+    div.field-validation-error, div.field-parse-error 
+    { 
+        left: 10px; 
+        margin-top: 30px;
+        padding: 7px;
+        border-width: 2px !important;
+        position: absolute;
+        z-index: 9999;
+        background-color: #f00;
+        font-weight: bold;
+        color: #fff;
+        max-width: 250px;
+
+        div.field-validation-error-pointer, div.field-parse-error-pointer
+        {	
+            position: absolute; 
+            width:0; 
+            height:0; 
+            border-right: 5px solid transparent; 
+            border-top: 5px solid transparent;
+            border-left: 5px solid red;
+            border-bottom: 5px solid red;
+            top: -10px;
+        }
+    }
+}

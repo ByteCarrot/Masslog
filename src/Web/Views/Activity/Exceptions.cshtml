@@ -1,0 +1,33 @@
+﻿@using ByteCarrot.Masslog.Web.Controllers.Activities
+@model ExceptionsViewModel
+
+<h2 class="page">Exceptions</h2>
+@if (Model.Exceptions.Count == 0)
+{
+    <div class="alert alert-info">No exceptions</div>
+}
+@foreach (var exception in Model.Exceptions)
+{
+    <div class="activity-exception-details" style="margin-left: @(exception.Level * 2)em">
+        <h3>@exception.Message</h3>
+        <table class="name-value">
+            <tr>
+                <td class="left">Name</td>
+                <td class="right">@exception.Name</td>
+            </tr> 
+            <tr>
+                <td class="left">Type</td>
+                <td class="right">@exception.Type</td>
+            </tr> 
+            <tr>
+                <td class="left">Source</td>
+                <td class="right">@exception.Source</td>
+            </tr> 
+        </table>
+
+        <label>Stack trace:</label>
+        <pre class="wrap-text">
+            @exception.StackTrace
+        </pre>
+    </div>
+}

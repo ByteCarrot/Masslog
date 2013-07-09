@@ -1,0 +1,6 @@
+﻿@model List<ByteCarrot.Masslog.Web.Controllers.Applications.ListItemViewModel>
+
+@foreach (var item in Model)
+{
+    <li><a href="#" data-jo='{"action":"get","url":"@Url.Action(MVC.Application.Index(item.Id))","target":"#container"}'>@item.Name</a></li>
+}

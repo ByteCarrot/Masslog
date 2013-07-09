@@ -1,0 +1,21 @@
+﻿@using ByteCarrot.Masslog.Web.Controllers.Activities
+@model ServerVariablesViewModel
+
+<h2 class="page">Server Variables</h2>
+@if (Model.VariablesIgnored)
+{
+    <div class="alert alert-info">Server variables ignored</div>
+} 
+
+@if (Model.Variables.Count > 0)
+{
+    <table class="name-value">
+        @foreach (var item in Model.Variables)
+        {
+            <tr>
+                <td class="left">@item.Name</td>
+                <td class="right">@Html.Encode(item.Value)</td>
+            </tr>
+        }
+    </table>
+}

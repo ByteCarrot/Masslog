@@ -1,0 +1,22 @@
+﻿@using ByteCarrot.Masslog.Web.Controllers.Activities
+@using MvcContrib.UI.Grid
+@using ByteCarrot.Masslog.Web.Views.Infrastructure
+@model SearchResultViewModel
+
+@helper RowStart(SearchResultItemViewModel m) {
+    <text><tr class="clickable @(m.Failure ? "error" : String.Empty)" data-jo='{"action":"get","url":"@Url.Action(MVC.Activity.Index(m.Id))","target":"#container"}'></text>
+}
+
+@(Html.Grid(Model.Items)
+      .Sort(Model.SortOptions)
+      .RenderUsing(new ExtendedHtmlTableGridRenderer<SearchResultItemViewModel>("#activities-result"))
+      .RowStart(RowStart)
+      .Columns(c =>
+      {
+          c.For(x => x.StatusCode).NumericColumn();
+          c.For(x => x.Status).TextColumn();
+          c.For(x => x.HostName).TextColumn();
+          c.For(x => x.Url).LongTextColumn();
+          c.For(x => x.Duration).TimeColumn();
+          c.For(x => x.StartedAt).TimeColumn();
+      }))

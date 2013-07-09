@@ -1,0 +1,99 @@
+﻿table.grid
+{
+    border: solid 1px #e8eef4;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    width: 100%;
+
+    th 
+    {
+        padding: 6px 10px;
+        text-align: left;
+        background-color: #5c9bcb;
+        border: solid 1px #e8eef4;
+        border-bottom: solid 1px #437499;
+        cursor: pointer;
+        text-align: center;
+
+        a
+        {
+            color: #ffffff;
+            text-decoration: none;
+        }
+    }
+
+    th:hover 
+    {
+        padding: 6px 10px;
+        text-align: left;
+        background-color: #508bb6;
+        border: solid 1px #e8eef4;
+        border-bottom: solid 1px #437499;
+        text-align: center;
+    }
+
+    td 
+    {
+        padding: 6px 10px;
+        border: solid 1px #e8eef4;
+        vertical-align: top;
+    }
+
+    td.actions-column 
+    {
+        width: 85px;
+        min-width: 83px;
+    }
+
+    td.boolean-column
+    {
+        width: 16px;
+        text-align: center;
+    }
+
+    td.id-column 
+    {
+        width: 16px;
+        text-align: right;
+    }
+
+    td.time-column 
+    {
+        text-align: right;
+    }
+
+    td.numeric-column 
+    {
+        text-align: right;
+    }
+
+    td.text-column 
+    {
+        text-align: left;
+    }
+
+    tbody
+    {
+        tr:hover
+        {
+            background-color: #dbf3ff;
+        }
+    }
+}
+
+div.pagination 
+{
+    margin-top: 10px;
+	margin-bottom: 0px;
+
+    button.span1
+    {
+        width: 81px;
+    }
+
+    button.disabled.span8 
+    {
+        color: #000;
+        font-weight: bold;
+    }
+}

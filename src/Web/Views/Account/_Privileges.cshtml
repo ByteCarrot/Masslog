@@ -1,0 +1,67 @@
+﻿@model ByteCarrot.Masslog.Web.Controllers.Account.IPrivilegesList
+
+<div id="PrivilegesControlGroup" class="control-group">
+    <label class="control-label">Privileges</label>
+    <div class="controls">
+        @if (Model.Privileges.Count == 0)
+        {
+            <div class="alert alert-info">
+                <strong>Warning!</strong> Privileges section requires at least one application to be defined
+            </div>
+        }
+        else
+        {
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Application</th>
+                        <th>Can browse?</th>
+                        <th>Can modify?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < Model.Privileges.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                @Html.HiddenFor(x => x.Privileges[i].ApplicationId, new { id = String.Empty })
+                                @Html.HiddenFor(x => x.Privileges[i].ApplicationName, new { id = String.Empty })
+                                @Model.Privileges[i].ApplicationName
+                            </td>
+                            <td>@Html.CheckBoxFor(x => x.Privileges[i].CanBrowse, new { id = "canBrowse" + i, data_uncheck = "#canModify" + i })</td>
+                            <td>@Html.CheckBoxFor(x => x.Privileges[i].CanModify, new { id = "canModify" + i, data_check = "#canBrowse" + i })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        function changePrivilegesControlGroupVisibility() {
+            if ($('#IsAdministrator').attr('checked') === 'checked') {
+                $('#PrivilegesControlGroup').hide();
+            } else {
+                $('#PrivilegesControlGroup').show();
+            }
+        };
+        changePrivilegesControlGroupVisibility();
+
+        $('#IsAdministrator').click(function() {
+            changePrivilegesControlGroupVisibility();
+        });
+        
+        $('[data-check]').click(function () {
+            if ($(this).attr('checked') === 'checked') {
+                $($(this).data('check')).attr('checked', 'checked');
+            }
+        });
+
+        $('[data-uncheck]').click(function () {
+            if ($(this).attr('checked') !== 'checked') {
+                $($(this).data('uncheck')).removeAttr('checked');
+            }
+        });
+    });
+</script>

@@ -1,0 +1,79 @@
+﻿@model ByteCarrot.Masslog.Web.Infrastructure.LayoutViewModel
+
+<div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand">
+                <img src="@Url.Content("~/Content/images/logo.png")" alt=""/>
+            </a>
+
+            @if (Model.Security.IsAuthenticated)
+            {
+                <ul class="nav">
+                    <li class="divider-vertical"></li>
+                    <li>
+                        <a href="#" data-jo='{"action":"get","target":"div#container","url":"@Url.Action(MVC.Activities.Index())"}'><i class="icon-white icon-search"></i>&nbsp;Activities</a>
+                    </li>
+                    @if (Model.Security.CanAccessApplications)
+                    {
+                        <li class="divider-vertical"></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-tasks icon-white"></i>&nbsp;Applications&nbsp;<i class="caret"></i>
+                            </a>
+                            <ul id="applications-menu" class="dropdown-menu">
+                                @foreach (var item in Model.Applications)
+                                {
+                                    <li><a href="#" data-jo='{"action":"get","url":"@Url.Action(MVC.Application.Index(item.Id))","target":"div#container"}'>@item.Name</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    @if (Model.Security.CanAccessAdministration)
+                    {
+                        <li class="divider-vertical"></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-cog icon-white"></i>&nbsp;Administration&nbsp;<i class="caret"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @if (Model.Security.CanManageApplications)
+                                {
+                                    <li><a href="#" data-jo='{"action":"get","url":"@Url.Action(MVC.Application.List())","target":"#container"}'>Applications</a></li>
+                                }
+                                @if (Model.Security.CanManageUsers)
+                                {
+                                    <li><a href="#" data-jo='{"action":"get","url":"@Url.Action(MVC.Account.List())","target":"#container"}'>Users</a></li>
+                                }
+                                @if (Model.Security.CanManageSmtpConfiguration)
+                                {
+                                    <li><a href="#" data-jo='{"action":"get","url":"@Url.Action(MVC.SmtpConfiguration.Index())","target":"#container"}'>SMTP Configuration</a></li>
+                                }
+                            </ul>
+                        </li>
+
+                    }
+                    <li class="divider-vertical"></li>
+                </ul>
+                <ul class="nav pull-right">
+                    <li class="divider-vertical"></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-user icon-white"></i>&nbsp;@Model.Security.Username&nbsp;<i class="caret"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            @if (Model.Security.CanChangePassword)
+                            {
+                                <li><a href="#" data-jo='{"action":"get","url":"@Url.Action(MVC.Account.ChangePassword())","target":"#container"}'>Change password</a></li>
+                            }
+                            <li>@Html.ActionLink("Sign out", MVC.Account.SignOut())</li>
+                        </ul>
+                    </li>
+                </ul>
+            }
+            <a class="brand" id="loader">
+                <img src="@Url.Content("~/Content/images/loader.gif")" alt=""/>
+            </a>
+        </div>
+    </div>
+</div>

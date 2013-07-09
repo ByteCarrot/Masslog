@@ -1,0 +1,52 @@
+﻿@using ByteCarrot.Masslog.Web.Controllers.Activities
+@model RequestViewModel
+
+<h2 class="page">Request</h2>
+<h3 class="page">Info</h3>
+<table class="name-value">
+    <tr>
+        <td class="left">HTTP Method</td>
+        <td class="right">@Model.HttpMethod</td>
+    </tr>
+    <tr>
+        <td class="left">Raw Url</td>
+        <td class="right">@Model.RawUrl</td>
+    </tr>  
+    <tr>
+        <td class="left">Protocol</td>
+        <td class="right">@Model.Protocol</td>
+    </tr>  
+    <tr>
+        <td class="left">Content Type</td>
+        <td class="right">@Model.ContentType</td>
+    </tr>  
+    <tr>
+        <td class="left">Content Encoding</td>
+        <td class="right">@Model.ContentEncoding</td>
+    </tr>  
+    <tr>
+        <td class="left">Content Length</td>
+        <td class="right">@Model.ContentLength</td>
+    </tr>  
+</table>
+
+<h3 class="page">Headers</h3>
+@if (Model.Headers.Count == 0)
+{
+        <div class="alert alert-info">No headers</div>
+}
+else
+{
+    <table class="name-value">
+        @foreach (var item in Model.Headers)
+        {
+            <tr>
+                <td class="left">@item.Name</td>
+                <td class="right">@Html.Encode(item.Value)</td>
+            </tr>
+        }
+    </table>
+}
+
+<h3 class="page">Body</h3>
+<pre>@Model.Body</pre>

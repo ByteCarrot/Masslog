@@ -1,0 +1,158 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    color: #414141;
+    background-color: #f2f4f5;
+}
+
+div#container {
+    margin-top: 60px;
+    padding: 15px;
+    background-color: #fafafa;
+}
+
+div#footer {
+    text-align: center;
+}
+
+@import "common";
+@import "field-container";
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+pre {
+    padding: 10px;
+    background-color: #FFFFE0;
+    border: solid 1px #e6e69f;
+    font-size: 13px;
+}
+
+@import "grid";
+
+/* Name-Value table */
+
+table.name-value {
+    width: 100%;
+    table-layout: fixed;
+    border: solid 1px #e8eef4;
+    border-collapse: collapse;
+    background-color: #ffffff;
+}
+
+    table.name-value tr:hover {
+        background-color: #dbf3ff;
+    }
+
+    table.name-value td {
+        .wrap-text;
+        vertical-align: top;
+        padding: 6px 10px;
+        border: solid 1px #e8eef4;
+    }
+
+        table.name-value td.left {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        table.name-value td.right {
+            width: 75%;
+        }
+
+/* MISC  
+----------------------------------------------------------*/
+.clear {
+    clear: both;
+}
+
+.error {
+    color: Red;
+}
+
+/* Styles for common elements
+----------------------------------------------------------*/
+
+#error-box {
+    position: absolute;
+    margin: auto;
+    cursor: pointer;
+    z-index: 100;
+    top: 100px;
+    width: 100%;
+}
+
+    #error-box > div {
+        padding: 0;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #FE8B8B;
+    }
+
+    #error-box p {
+        padding: 0;
+        margin: 12px;
+    }
+
+    #error-box span.ui-icon {
+        float: left;
+        margin-right: 3px;
+        margin-top: 3px;
+    }
+
+/* Styles for Actions module
+----------------------------------------------------------*/
+
+@import "activities";
+@import "section";
+@import "activity";
+
+#activity-request-response {
+    pre {
+        overflow: auto;
+    }
+}
+
+#activity-server-variables {
+    margin-top: 5px;
+}
+
+/* Errors */
+
+#activity-exceptions {
+    margin-top: 5px;
+}
+
+    #activity-exceptions h3 {
+        color: #ff0000;
+        margin: 0 0 10px 0;
+    }
+
+.activity-exception-details {
+    border: solid 1px #e6e69f;
+    background-color: #fdfdee;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+    .activity-exception-details label {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: block;
+        font-weight: bold;
+    }
+
+    .activity-exception-details pre {
+        margin: 0;
+    }
+
+@import "settings";
+@import "codemirror";
+@import "applications";
+@import "application";
+@import "jquery-ui";
+@import "menu";
+@import "footer";
+@import "tabs";
+@import "setup";

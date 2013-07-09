@@ -1,0 +1,49 @@
+﻿@using ByteCarrot.Masslog.Web.Controllers.Activities
+@model ResponseViewModel
+
+<h2 class="page">Response</h2>
+<h3 class="page">Info</h3>
+
+<table class="name-value">
+    <tr>
+        <td class="left">Status Code</td>
+        <td class="right">@Model.StatusCode</td>
+    </tr>
+    <tr>
+        <td class="left">Status Description</td>
+        <td class="right">@Model.StatusDescription</td>
+    </tr>
+    <tr>
+        <td class="left">Content Type</td>
+        <td class="right">@Model.ContentType</td>
+    </tr>
+    <tr>
+        <td class="left">Content Encoding</td>
+        <td class="right">@Model.ContentEncoding</td>
+    </tr>
+    <tr>
+        <td class="left">ContentLength</td>
+        <td class="right">@Model.ContentLength</td>
+    </tr>
+</table>
+
+<h3 class="page">Headers</h3>
+@if (Model.Headers.Count == 0)
+{
+        <div class="alert alert-info">No headers</div>
+}
+else
+{
+    <table class="name-value">
+        @foreach (var item in Model.Headers)
+        {
+            <tr>
+                <td class="left">@item.Name</td>
+                <td class="right">@Html.Encode(item.Value)</td>
+            </tr>
+        }
+    </table>
+}
+
+<h3 class="page">Body</h3>
+<pre>@Model.Body</pre>

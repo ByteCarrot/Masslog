@@ -1,0 +1,9 @@
+﻿@model ByteCarrot.Masslog.Web.Controllers.Applications.ApplicationViewModel
+
+<div id="application">
+    <h2 class="page">@Model.Name</h2>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#" data-toggle="tab" data-jo='{"action":"get","url":"@Url.Action(MVC.LoggingRules.Index())","target":"#tab-content"}'>Configuration</a></li>
+    </ul>
+    <div id="tab-content" data-jo='{"action":"get","url":"@Url.Action(MVC.LoggingRules.Index())","target":"_self","event":"load"}'></div>
+</div>

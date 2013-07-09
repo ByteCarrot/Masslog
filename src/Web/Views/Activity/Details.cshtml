@@ -1,0 +1,49 @@
+﻿@using ByteCarrot.Masslog.Web.Controllers.Activities
+@model DetailsViewModel
+<h2 class="page">Activity</h2>
+<table class="name-value">
+    <tr>
+        <td class="left">Machine</td>
+        <td class="right">@Model.Machine</td>
+    </tr>
+    <tr>
+        <td class="left">Machine Fully Qualified Name</td>
+        <td class="right">@Model.MachineFqn</td>
+    </tr>
+    <tr>
+        <td class="left">User</td>
+        <td class="right">@Model.User</td>
+    </tr>
+    <tr>
+        <td class="left">Host Name</td>
+        <td class="right">@Model.HostName</td>
+    </tr>
+    <tr>
+        <td class="left">Url</td>
+        <td class="right">@Model.Url</td>
+    </tr>
+    <tr>
+        <td class="left">Status Code</td>
+        <td class="right">@Model.StatusCode</td>
+    </tr>
+    <tr>
+        <td class="left">Started at</td>
+        <td class="right">@Model.LocalStartedAt</td>
+    </tr>
+    <tr>
+        <td class="left">Ended at</td>
+        <td class="right">@Model.LocalEndedAt</td>
+    </tr>
+    <tr>
+        <td class="left">Duration</td>
+        <td class="right">@Model.Duration</td>
+    </tr>
+    <tr>
+        <td class="left">User host</td>
+        <td class="right">@Model.UserHost</td>
+    </tr>
+    <tr>
+        <td class="left">Status</td>
+        <td class="right">@Model.Status</td>
+    </tr>
+</table>

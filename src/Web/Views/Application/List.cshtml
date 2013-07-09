@@ -1,0 +1,47 @@
+﻿@model ListViewModel
+@using ByteCarrot.Masslog.Web.Controllers.Applications
+@using ByteCarrot.Masslog.Web.Views.Infrastructure
+@using MongoDB.Bson
+@using MvcContrib.UI.Grid
+@using ByteCarrot.Masslog.Core.Infrastructure.Extensions
+       
+@helper Actions(string id) {
+    <div class="btn-group">
+        <button class="btn dropdown-toggle" data-toggle="dropdown">
+            <i class="icon-cog"></i>&nbsp;Action&nbsp;<i class="caret"></i>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="#" data-jo='{"action":"get","url":"@Url.Action(MVC.Application.ActionNames.Edit, new { id })","target":"#container"}'><i class="icon-pencil"></i>&nbsp;Edit</a></li>
+            <li><a href="#" data-jo='{"action":"get","url":"@Url.Action(MVC.Application.ActionNames.Delete, new { id })","target":"#container","confirm":"Are you sure? The application and all related data will be permanently deleted."}'><i class="icon-remove"></i>&nbsp;Delete</a></li>
+        </ul>
+    </div>
+}
+
+<h2 class="page">Applications</h2>
+<div class="form-actions form-toolbar">
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <button class="btn" data-jo='{"action":"get","url":"@Url.Action(MVC.Application.Add())","target":"#container"}'><i class="icon-plus"></i>&nbsp;Add</button>
+        </div>
+    </div>
+</div>
+
+@if (!Model.Message.Empty())
+{
+    <div class="alert alert-success">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        @Model.Message
+    </div>
+}
+
+@(Html.Grid(Model.Items)
+    .Sort(Model.SortOptions)
+    .RenderUsing(new ExtendedHtmlTableGridRenderer<ListItemViewModel>("#container"))
+    .Columns(c =>
+    {
+        c.For(x => x.Id).IdColumn().Named("ID");
+        c.For(x => x.Name).TextColumn();
+        c.For(x => Actions(x.Id)).ActionsColumn().Sortable(false);
+    }))
+
+<meta data-jo='{"action":"get","url":"@Url.Action(MVC.Application.ActionNames.Menu)","target":"#applications-menu","event":"load"}'/>

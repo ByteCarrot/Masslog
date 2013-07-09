@@ -1,0 +1,148 @@
+﻿<parameters>
+  <parameter name="AppPath"
+             defaultValue="Default Web Site/Masslog"
+             tags="iisapp">
+    <parameterEntry type="ProviderPath"
+                    scope="iisapp"
+                    match="Web"/>
+  </parameter>
+  
+  <!-- SQL Server Parameters -->
+  <parameter name="SQLServerDbType"
+             defaultValue="SQLServer"
+             tags="SQL,Hidden">
+    <parameterEntry type="XmlFile"
+                    scope="\\web.config$"
+                    match="/configuration/masslog/add[@key='DatabaseType']/@value" />
+  </parameter>
+  
+  <parameter name="SQLServerDbServer"
+             defaultValue=".\"
+             tags="SQL,DbServer"/>
+
+  <parameter name="SQLServerDbName"
+             defaultValue="masslog"
+             tags="SQL,DbName">
+    <parameterEntry type="TextFile"
+                    scope="user.sql"
+                    match="SQLServerDbName" />
+  </parameter>
+
+  <parameter name="SQLServerDbUsername"
+             defaultValue="masslog"
+             tags="SQL,DbUsername">
+    <parameterEntry type="TextFile"
+                    scope="user.sql"
+                    match="SQLServerDbUsername" />
+    <parameterEntry type="TextFile"
+                    scope="login.sql"
+                    match="SQLServerDbUsername" />
+  </parameter>
+
+  <parameter name="SQLServerDbUserPassword"
+             tags="SQL,New,Password,DbUserPassword">
+    <parameterEntry type="TextFile"
+                    scope="login.sql"
+                    match="SQLServerDbUserPassword" />
+  </parameter>
+
+  <parameter name="SQLServerDbConnectionString"
+             defaultValue="Data Source={SQLServerDbServer};Initial Catalog={SQLServerDbName};User Id={SQLServerDbUsername};Password={SQLServerDbUserPassword};"
+             tags="SQL,Hidden">
+    <parameterEntry type="XmlFile"
+                    scope="\\web.config$"
+                    match="/configuration/masslog/add[@key='ConnectionString']/@value" />
+  </parameter>
+
+  <parameter name="SQLServerDbAdminUsername"
+             defaultValue="sa"
+             tags="SQL,DbAdminUsername"/>
+
+  <parameter name="SQLServerDbAdminPassword"
+             tags="SQL,New,Password,DbAdminPassword"/>
+
+  <parameter name="SQLServerDbAdminConnectionString"
+             defaultValue="Data Source={SQLServerDbServer};Initial Catalog=master;User Id={SQLServerDbAdminUsername};Password={SQLServerDbAdminPassword};"
+             tags="SQL,Hidden,SQLConnectionString">
+    <parameterEntry type="ProviderPath" 
+                    scope="dbfullsql" 
+                    match="login.sql" />
+  </parameter>
+
+  <parameter name="SQLServerDbAdminConnectionString2"
+             defaultValue="Data Source={SQLServerDbServer};Initial Catalog={SQLServerDbName};User Id={SQLServerDbAdminUsername};Password={SQLServerDbAdminPassword};"
+             tags="SQL,Hidden">
+    <parameterEntry type="ProviderPath"
+                    scope="dbfullsql"
+                    match="user.sql" />
+    <parameterEntry type="ProviderPath"
+                    scope="dbfullsql"
+                    match="sqlserver.sql" />
+  </parameter>
+
+  <!-- MySQL Parameters -->
+  <parameter name="MySQLDbType"
+             defaultValue="MySQL"
+             tags="MySQL,Hidden">
+    <parameterEntry type="XmlFile"
+                    scope="\\web.config$"
+                    match="/configuration/masslog/add[@key='DatabaseType']/@value" />
+  </parameter>
+
+  <parameter name="MySQLDbServer"
+             defaultValue="localhost"
+             tags="MySQL,DbServer">
+    <parameterEntry type="TextFile"
+                    scope="install.sql"
+                    match="MySQLDbServer" />
+  </parameter>
+
+  <parameter name="MySQLDbName"
+             defaultValue="masslog"
+             tags="MySQL,DbName">
+    <parameterEntry type="TextFile"
+                    scope="install.sql"
+                    match="MySQLDbName" />
+  </parameter>
+
+  <parameter name="MySQLDbUsername"
+             defaultValue="masslog"
+             tags="MySQL,DbUsername">
+    <parameterEntry type="TextFile"
+                    scope="install.sql"
+                    match="MySQLDbUsername" />
+  </parameter>
+
+  <parameter name="MySQLDbUserPassword"
+             tags="MySQL,New,Password,DbUserPassword">
+    <parameterEntry type="TextFile"
+                    scope="install.sql"
+                    match="MySQLDbUserPassword" />
+  </parameter>
+
+  <parameter name="MySQLDbConnectionString"
+             defaultValue="Server={MySQLDbServer};Database={MySQLDbName};Uid={MySQLDbUsername};Pwd={MySQLDbUserPassword};"
+             tags="MySQL,Hidden">
+    <parameterEntry type="XmlFile"
+                    scope="\\web.config$"
+                    match="/configuration/masslog/add[@key='ConnectionString']/@value" />
+  </parameter>
+
+  <parameter name="MySQLDbAdminUsername"
+             defaultValue="root"
+             tags="MySQL,DbAdminUsername"/>
+
+  <parameter name="MySQLDbAdminPassword"
+             tags="MySQL,New,Password,DbAdminPassword"/>
+
+  <parameter name="MySQLDbAdminConnectionString"
+             defaultValue="Server={MySQLDbServer};Database={MySQLDbName};Uid={MySQLDbAdminUsername};Pwd={MySQLDbAdminPassword};"
+             tags="MySQL,Hidden,MySQLConnectionString">
+    <parameterEntry type="ProviderPath"
+                    scope="dbmysql"
+                    match="mysql.sql" />
+    <parameterEntry type="ProviderPath"
+                    scope="dbmysql"
+                    match="install.sql" />
+  </parameter>
+</parameters>

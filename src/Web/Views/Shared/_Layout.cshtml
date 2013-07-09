@@ -1,0 +1,42 @@
+﻿@using ByteCarrot.Masslog.Web.Infrastructure
+@{ var Model = (LayoutViewModel)ViewData["layout"]; }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.mod.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/less/styles.less" rel="stylesheet" type="text/css" />
+
+    <script src="~/Scripts/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/modernizr-2.5.3.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.numeric.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/codemirror.js" type="text/javascript"></script>
+    <script src="~/Scripts/codemirror.highlighting.js" type="text/javascript"></script>
+    <script src="~/Scripts/datajo.js"></script>
+    <script src="~/Scripts/site.js" type="text/javascript"></script>
+</head>
+<body data-jo-config='{"activityIndicator":"#loader"}'>
+    @Html.Partial(MVC.Shared.Views._Menu, Model)
+
+    <div id="container" class="container">
+        @RenderBody()
+    </div>
+
+    <div id="footer" class="container">
+        <a href="http://masslog.bytecarrot.com" target="_blank">Support</a> | 
+        Version: @Model.Version
+    </div>
+
+    <div id="error-box" class="ui-widget">
+        <div class="ui-state-error ui-corner-all">
+            <p><span class="ui-icon ui-icon-alert"></span><strong>Alert: </strong><span id="error-text">&nbsp;</span></p>
+        </div>
+    </div>
+
+</body>
+</html>
